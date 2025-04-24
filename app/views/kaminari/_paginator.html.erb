@@ -1,0 +1,13 @@
+<%= paginator.render do %>
+  <nav class="flex items-center justify-center border-t border-gray-200 px-4 pt-2 sm:px-0">
+    <div class="hidden md:-mt-px md:flex">
+      <% each_page do |page| %>
+        <% if page.left_outer? || page.right_outer? || page.inside_window? %>
+          <%== page_tag page %>
+        <% elsif !page.was_truncated? %>
+          <%== gap_tag %>
+        <% end %>
+      <% end %>
+    </div>
+  </nav>
+<% end %>
