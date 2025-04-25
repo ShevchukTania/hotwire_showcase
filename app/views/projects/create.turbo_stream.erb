@@ -1,0 +1,8 @@
+<% if @project.persisted? %>
+  <%= turbo_stream.prepend "projects" do %>
+    <%= render @project %>
+  <% end %>
+  <%= turbo_stream.update "new_project_form" do %>
+    <%= render "form", project: Project.new %>
+  <% end %>
+<% end %>

@@ -1,0 +1,35 @@
+<tr class="even:bg-gray-50">
+  <td class="w-1/3 whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3">
+    <turbo-frame id="edit_name">
+      <div class="group inline-flex items-center space-x-1">
+        <%= link_to edit_task_name_path(task), class: "flex items-center space-x-1" do %>
+          <span><%= task.name %></span>
+          <svg xmlns="http://www.w3.org/2000/svg"
+               fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+               class="h-4 w-4 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-in-out">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M16.862 3.487a2.25 2.25 0 1 1 3.182 3.182L7.5 19.313 3 21l1.688-4.5L16.862 3.487z" />
+          </svg>
+        <% end %>
+      </div>
+    </turbo-frame>
+  </td>
+
+  <td class="w-1/3 px-3 py-4 text-sm text-gray-500">
+    <%= task.description %>
+  </td>
+  <td class="w-1/6 whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+    <%= I18n.l(task.due_date, format: :default) %>
+  </td>
+  <td class="w-1/6 whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+    <%= task.status %>
+  </td>
+  <td class="w-1/6 relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
+    <%= button_to [task.project, task],
+                  method: :delete,
+                  class: "btn btn-danger",
+                  data: { turbo_confirm: "Are you sure?" } do %>
+      Delete
+    <% end %>
+  </td>
+</tr>

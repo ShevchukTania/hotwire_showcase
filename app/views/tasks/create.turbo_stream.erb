@@ -1,0 +1,8 @@
+<% if @task.persisted? %>
+  <%= turbo_stream.prepend "tasks" do %>
+    <%= render @task %>
+  <% end %>
+  <%= turbo_stream.replace "new_task" do %>
+    <%= render "form", project: @project, task: @project.tasks.build %>
+  <% end %>
+<% end %>

@@ -1,0 +1,48 @@
+<turbo-frame id="new_project">
+  <% if project.errors.present? %>
+    <div class="mt-1 text-sm text-red-600">
+      <% project.errors.full_messages.each do |error| %>
+        <p>
+          <%= error %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
+  <%= form_with model: project, class: "w-full mx-auto" do |f| %>
+    <div class="space-y-2">
+      <%= f.label :name, class: "block text-sm font-medium leading-6 text-gray-900" %>
+      <%= f.text_field :name,
+                       class: "block w-full rounded-md border-0 px-4 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6",
+                       placeholder: "Enter project name" %>
+    </div>
+
+    <div class="space-y-2">
+      <%= f.label :description, class: "block text-sm font-medium leading-6 text-gray-900" %>
+      <%= f.text_area :description,
+                      rows: 4,
+                      class: "block w-full rounded-md border-0 px-4 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6",
+                      placeholder: "Enter project description" %>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="space-y-2">
+        <%= f.label :start_date, class: "block text-sm font-medium leading-6 text-gray-900" %>
+        <%= f.date_field :start_date,
+                         class: "block w-full rounded-md border-0 px-4 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+      </div>
+
+      <div class="space-y-2">
+        <%= f.label :end_date, class: "block text-sm font-medium leading-6 text-gray-900" %>
+        <%= f.date_field :end_date,
+                         class: "block w-full rounded-md border-0 px-4 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-end gap-x-6 pt-6">
+      <%= link_to 'Cancel', :back, data: {action: "modal#close"},
+                  class: "text-sm font-semibold leading-6 text-gray-900 hover:text-gray-700" %>
+
+      <%= f.submit class: "rounded-md bg-indigo-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+    </div>
+  <% end %>
+</turbo-frame>
